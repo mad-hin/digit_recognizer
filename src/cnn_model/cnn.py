@@ -41,7 +41,7 @@ def create_cnn_model():
     return model
 
 
-def export_cnn_model():
+def export_cnn_model(): # 98.75%
     x_train, y_train, x_test, y_test = get_mnist()
     print(x_train.shape, y_train.shape, x_test.shape, y_test.shape)
     model = create_cnn_model()

@@ -1,16 +1,27 @@
+import gzip
 import math
-
+import pickle
 import cv2
+
 from numpy import argmax, pad
 from keras.models import load_model
+from PIL import ImageGrab, Image
 
-model = load_model('cnn_model/cnn_model.h5')
 
-
-def predict_digit(img):
-    test_image = img.reshape(-1, 28, 28, 1)
-    print(test_image.shape)
-    return argmax(model.predict(test_image))
+def predict_digit(img, modelName):
+    if (modelName == "cnn"):
+        model = load_model('cnn_model/cnn_model.h5')
+        test_image = img.reshape(-1, 28, 28, 1)
+        print(test_image.shape)
+        return argmax(model.predict(test_image))
+    elif (modelName == "knn"):
+        with gzip.open("knn_model/knn_model.gz", 'rb') as file:
+            model = pickle.load(file)
+            test_image = img.reshape(-1, 28, 28, 1)
+            test_image = test_image.reshape(test_image.shape[0],28 * 28)
+            pred = model.predict(test_image)
+            print(int(pred))
+            return int(pred)
 
 
 def img_preprocess(path):

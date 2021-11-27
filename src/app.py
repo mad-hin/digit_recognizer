@@ -15,8 +15,7 @@ class App(Tk):
         :param model_name: the model using
         """
         super().__init__()
-        self.modelName = model_name[:3]
-        self.modelPath = model_name
+        self.modelName = model_name
 
         # configure the root window
         self.title("AI digital recognition with " + self.modelName)
@@ -57,8 +56,8 @@ class App(Tk):
         print the predicted number to Text box
         """
         self.canvas2image()
-        img = img_preprocess("images/test.png")
-        predict = predict_digit(img)
+        img = img_preprocess("images/out.png")
+        predict = predict_digit(img, self.modelName)
         self.t.delete(1.0, END)
         self.t.insert(INSERT, str(predict))
 
@@ -72,7 +71,7 @@ class App(Tk):
         y = self.cv.winfo_rooty()
         x1 = x + self.cv.winfo_width()
         y1 = y + + self.cv.winfo_height()
-        ImageGrab.grab().crop((x, y, x1, y1)).save("images/test.png")
+        ImageGrab.grab().crop((x, y, x1, y1)).save("images/out.png")
         print("image created")
 
     def reset_canvas(self):
@@ -82,5 +81,5 @@ class App(Tk):
         self.cv.delete("all")
 
 
-a = App("cnn_model/cnn_model.h5")
+a = App("knn")
 a.mainloop()
