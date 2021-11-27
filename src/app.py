@@ -5,7 +5,7 @@ try :
 except :
     from pyscreenshot import ImageGrab
 
-from image_process.img_process import img_preprocess
+from image_process.img_process import img_preprocess, predict_digit
 
 
 class App(Tk):
@@ -57,7 +57,8 @@ class App(Tk):
         print the predicted number to Text box
         """
         self.canvas2image()
-        predict = img_preprocess("images/test.png")
+        img = img_preprocess("images/test.png")
+        predict = predict_digit(img)
         self.t.delete(1.0, END)
         self.t.insert(INSERT, str(predict))
 

@@ -47,7 +47,7 @@ def export_cnn_model():
     model = create_cnn_model()
     model.fit(x_train, y_train, epochs=10, shuffle=True, batch_size=32, validation_data=(x_test, y_test))
     _, acc = model.evaluate(x_test, y_test, verbose=1)
-    model.save("cnn_model2.h5")
+    model.save("cnn_model.h5")
 
 
 export_cnn_model()

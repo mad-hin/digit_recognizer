@@ -33,14 +33,7 @@ def img_preprocess(path):
             roi = image_refiner(roi)
 
             # getting prediction of cropped image
-            pred = predict_digit(roi)
-            if pred is None:
-                print("no")
-                return predict_digit(img)
-            else:
-                print("yes")
-                print(pred)
-                return pred
+            return roi
 
 
 # refining each digit
