@@ -81,5 +81,5 @@ class App(Tk):
         self.cv.delete("all")
 
 
-a = App("knn")
+a = App("cnn")
 a.mainloop()
