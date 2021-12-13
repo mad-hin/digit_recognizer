@@ -2,6 +2,7 @@ import gzip
 import pickle
 
 from matplotlib import pyplot as plt
+from sklearn.metrics import classification_report
 from tensorflow.python.ops.confusion_matrix import confusion_matrix
 
 from src.image_process.img_process import img_preprocess
@@ -33,3 +34,22 @@ ax.set_xlabel('\nPredicted Values')
 ax.set_ylabel('Actual Values ');
 ax.set_title("Confusion Matrix of the KNN model (User Handwriting)")
 plt.show()
+print(classification_report(test_predict, lable))
+"""
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       1.00      0.62      0.77        16
+           2       0.90      0.75      0.82        12
+           3       0.70      0.58      0.64        12
+           4       0.70      0.54      0.61        13
+           5       0.80      0.53      0.64        15
+           6       0.40      1.00      0.57         4
+           7       0.20      0.33      0.25         6
+           8       0.80      0.80      0.80        10
+           9       0.10      0.50      0.17         2
+
+    accuracy                           0.66       100
+   macro avg       0.66      0.67      0.63       100
+weighted avg       0.77      0.66      0.69       100
+"""
