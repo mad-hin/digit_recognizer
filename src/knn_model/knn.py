@@ -20,7 +20,7 @@ def load_mnist_dataset():
     return trainImage, trainLabel, testImage, testLabel
 
 
-def knn_model():  # 96.94
+def knn_model():  # 97.05
     # load the data
     trainImage, trainLabel, testImage, testLabel = load_mnist_dataset()
     print(trainImage.shape, trainLabel.shape, testImage.shape, testLabel.shape)
@@ -38,9 +38,9 @@ def knn_model():  # 96.94
     # get the score
     y_pred = classifier.predict(testImage)
     print(accuracy_score(testLabel, y_pred))
-    # plot_confusion_matrix(classifier, testImage, testLabel)
-    # plt.title("Confusion matrix of KNN")
-    # plt.show()
+    plot_confusion_matrix(classifier, testImage, testLabel)
+    plt.title("Confusion matrix of KNN")
+    plt.show()
     # export the model
     modelName = "knn_model.gz"
     with gzip.open(modelName, 'wb') as file:
