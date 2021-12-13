@@ -1,4 +1,5 @@
 import cv2
+from keras.models import load_model
 from matplotlib import pyplot as plt
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPooling2D, Dropout
@@ -45,10 +46,10 @@ def create_cnn_model():
 def export_cnn_model(): # 98.75%
     x_train, y_train, x_test, y_test = get_mnist()
     print(x_train.shape, y_train.shape, x_test.shape, y_test.shape)
-    model = create_cnn_model()
-    model.fit(x_train, y_train, epochs=10, shuffle=True, batch_size=32, validation_data=(x_test, y_test))
-    _, acc = model.evaluate(x_test, y_test, verbose=1)
-    model.save("cnn_model.h5")
+    model = load_model("cnn_model.h5")
+    # model.fit(x_train, y_train, epochs=10, shuffle=True, batch_size=32, validation_data=(x_test, y_test))
+    # _, acc = model.evaluate(x_test, y_test, verbose=1)
+    # model.save("cnn_model.h5")
     x_predict = model.predict(x_test)
     # print(x_predict)
     import tensorflow as tf
