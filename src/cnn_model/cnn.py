@@ -1,4 +1,5 @@
 import cv2
+from matplotlib import pyplot as plt
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPooling2D, Dropout
 from tensorflow.keras.models import Sequential
@@ -48,6 +49,24 @@ def export_cnn_model(): # 98.75%
     model.fit(x_train, y_train, epochs=10, shuffle=True, batch_size=32, validation_data=(x_test, y_test))
     _, acc = model.evaluate(x_test, y_test, verbose=1)
     model.save("cnn_model.h5")
+    x_predict = model.predict(x_test)
+    # print(x_predict)
+    import tensorflow as tf
+    import numpy as np
+    from sklearn.metrics import confusion_matrix
+    x_predict = [np.argmax(i) for i in x_predict]
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    print(x_predict)
+    print(y_test)
+    matrix = confusion_matrix(x_predict, y_test)
+    import seaborn as sns
+    fig, ax = plt.subplots(figsize=(15, 10))
+    sns.set(font_scale=1.4)
+    ax = sns.heatmap(matrix, linewidths=1, annot=True, ax=ax, cmap='Blues', fmt='g')
+    ax.set_xlabel('\nPredicted Values')
+    ax.set_ylabel('Actual Values ');
+    ax.set_title("Confusion Matrix of the CNN model")
+    plt.show()
 
 
 export_cnn_model()

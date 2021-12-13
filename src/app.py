@@ -1,8 +1,8 @@
 from tkinter import *
 
-try :
+try:
     from PIL import ImageGrab
-except :
+except:
     from pyscreenshot import ImageGrab
 
 from image_process.img_process import img_preprocess, predict_digit
