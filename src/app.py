@@ -39,6 +39,8 @@ class App(Tk):
         self.t = Text(self)
         self.t.pack()
 
+        self.cnt = 100
+
     def paint(self, event):
         """
         Drawing on the canvas
@@ -55,11 +57,13 @@ class App(Tk):
         """
         print the predicted number to Text box
         """
-        self.canvas2image()
-        img = img_preprocess("images/out.png")
+        path = self.canvas2image()
+        s = "images/hw_test_"+str(self.cnt)+".png"
+        img = img_preprocess(path)
         predict = predict_digit(img, self.modelName)
         self.t.delete(1.0, END)
         self.t.insert(INSERT, str(predict))
+        self.cnt += 1
 
     def canvas2image(self):
         """
@@ -71,8 +75,10 @@ class App(Tk):
         y = self.cv.winfo_rooty()
         x1 = x + self.cv.winfo_width()
         y1 = y + + self.cv.winfo_height()
-        ImageGrab.grab().crop((x, y, x1, y1)).save("images/out.png")
+        s = "images/hw_test_" + str(self.cnt) + ".png"
+        ImageGrab.grab().crop((x, y, x1, y1)).save(s)
         print("image created")
+        return s
 
     def reset_canvas(self):
         """

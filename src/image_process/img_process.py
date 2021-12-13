@@ -10,7 +10,7 @@ from PIL import ImageGrab, Image
 
 def predict_digit(img, modelName):
     if (modelName == "cnn"):
-        model = load_model('cnn_model/cnn_model.h5')
+        model = load_model('../cnn_model/cnn_model.h5')
         test_image = img.reshape(-1, 28, 28, 1)
         print(test_image.shape)
         return argmax(model.predict(test_image))
