@@ -43,31 +43,13 @@ def create_cnn_model():
     return model
 
 
-def export_cnn_model(): # 98.75%
+def export_cnn_model(): # 98.75%, take 330.17s
     x_train, y_train, x_test, y_test = get_mnist()
     print(x_train.shape, y_train.shape, x_test.shape, y_test.shape)
-    model = load_model("cnn_model.h5")
-    # model.fit(x_train, y_train, epochs=10, shuffle=True, batch_size=32, validation_data=(x_test, y_test))
-    # _, acc = model.evaluate(x_test, y_test, verbose=1)
-    # model.save("cnn_model.h5")
-    x_predict = model.predict(x_test)
-    # print(x_predict)
-    import tensorflow as tf
-    import numpy as np
-    from sklearn.metrics import confusion_matrix
-    x_predict = [np.argmax(i) for i in x_predict]
-    (x_train, y_train), (x_test, y_test) = mnist.load_data()
-    print(x_predict)
-    print(y_test)
-    matrix = confusion_matrix(x_predict, y_test)
-    import seaborn as sns
-    fig, ax = plt.subplots(figsize=(15, 10))
-    sns.set(font_scale=1.4)
-    ax = sns.heatmap(matrix, linewidths=1, annot=True, ax=ax, cmap='Blues', fmt='g')
-    ax.set_xlabel('\nPredicted Values')
-    ax.set_ylabel('Actual Values ');
-    ax.set_title("Confusion Matrix of the CNN model")
-    plt.show()
+    model = create_cnn_model()
+    model.fit(x_train, y_train, epochs=10, shuffle=True, batch_size=32, validation_data=(x_test, y_test))
+    _, acc = model.evaluate(x_test, y_test, verbose=1)
+    model.save("cnn_model.h5")
 
 
 export_cnn_model()

@@ -1,5 +1,6 @@
 import gzip
 import pickle
+import time
 
 from matplotlib import pyplot as plt
 from sklearn.metrics import accuracy_score, plot_confusion_matrix
@@ -20,7 +21,7 @@ def load_mnist_dataset():
     return trainImage, trainLabel, testImage, testLabel
 
 
-def knn_model():  # 97.05
+def knn_model():  # 97.05 96.94
     # load the data
     trainImage, trainLabel, testImage, testLabel = load_mnist_dataset()
     print(trainImage.shape, trainLabel.shape, testImage.shape, testLabel.shape)
@@ -30,16 +31,20 @@ def knn_model():  # 97.05
     trainImage, trainLabel = shuffle(trainImage, trainLabel, random_state=0)
 
     # choose the KNN Classifier with K = 3
-    classifier = KNeighborsClassifier(n_neighbors=3)
+    classifier = KNeighborsClassifier(n_neighbors=7)
 
     # train it
+    start = time.time()
     classifier = classifier.fit(trainImage, trainLabel)
+    end = time.time()
+    print(end - start, "seconds") #0.004902362823486328 seconds (K =3) 0.005059480667114258 seconds (K = 7)
+    print("Fitted")
 
     # get the score
     y_pred = classifier.predict(testImage)
     print(accuracy_score(testLabel, y_pred))
     plot_confusion_matrix(classifier, testImage, testLabel)
-    plt.title("Confusion matrix of KNN")
+    plt.title("Confusion matrix of KNN with K = 7")
     plt.show()
     # export the model
     modelName = "knn_model.gz"

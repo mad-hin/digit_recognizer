@@ -1,5 +1,7 @@
 import gzip
 import pickle
+import time
+
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, plot_confusion_matrix
 from sklearn.svm import SVC
@@ -24,8 +26,11 @@ def svm_model():  # 97.92%
     print(trainImage.shape, trainLabel.shape, testImage.shape, testLabel.shape)
     print('Training the Model')
     trainImage, trainLabel = shuffle(trainImage, trainLabel, random_state=0)
-    classifier = SVC(verbose = True)
+    classifier = SVC(verbose=True, kernel="rbf")
+    start = time.time()
     classifier = classifier.fit(trainImage, trainLabel)
+    end = time.time()
+    print(end - start, "seconds") # 228.13333225250244 seconds
     print("Fitted")
     y_pred = classifier.predict(testImage)
     print(accuracy_score(testLabel, y_pred))
@@ -35,5 +40,6 @@ def svm_model():  # 97.92%
     modelName = "non_linear_svm_model.gz"
     with gzip.open(modelName, 'wb') as file:
         pickle.dump(classifier, file)
+
 
 svm_model()
