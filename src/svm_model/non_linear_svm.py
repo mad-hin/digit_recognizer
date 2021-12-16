@@ -18,13 +18,13 @@ def load_mnist_dataset():
     return trainImage, trainLabel, testImage, testLabel
 
 
-def svm_model():  # 88.6%
+def svm_model():  # 97.92%
     # load the data
     trainImage, trainLabel, testImage, testLabel = load_mnist_dataset()
     print(trainImage.shape, trainLabel.shape, testImage.shape, testLabel.shape)
     print('Training the Model')
     trainImage, trainLabel = shuffle(trainImage, trainLabel, random_state=0)
-    classifier = SVC(gamma="auto")
+    classifier = SVC(verbose = True)
     classifier = classifier.fit(trainImage, trainLabel)
     print("Fitted")
     y_pred = classifier.predict(testImage)
