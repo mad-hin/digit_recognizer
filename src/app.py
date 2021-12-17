@@ -58,7 +58,6 @@ class App(Tk):
         print the predicted number to Text box
         """
         path = self.canvas2image()
-        s = "images/hw_test_"+str(self.cnt)+".png"
         img = img_preprocess(path)
         predict = predict_digit(img, self.modelName)
         self.t.delete(1.0, END)
@@ -75,7 +74,7 @@ class App(Tk):
         y = self.cv.winfo_rooty()
         x1 = x + self.cv.winfo_width()
         y1 = y + + self.cv.winfo_height()
-        s = "images/hw_test_" + str(self.cnt) + ".png"
+        s = "images/out.png"
         ImageGrab.grab().crop((x, y, x1, y1)).save(s)
         print("image created")
         return s

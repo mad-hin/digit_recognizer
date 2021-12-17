@@ -32,7 +32,10 @@ def svm_model():  # 88.6%
     end = time.time()
     print(end - start, "seconds") # 169.29505586624146 seconds
     print("Fitted")
+    start = time.time()
     y_pred = classifier.predict(testImage)
+    end = time.time()
+    print(end - start, "seconds")
     print(accuracy_score(testLabel, y_pred))
     plot_confusion_matrix(classifier, testImage, testLabel)
     plt.show()

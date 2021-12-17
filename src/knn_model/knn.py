@@ -31,17 +31,20 @@ def knn_model():  # 97.05 96.94
     trainImage, trainLabel = shuffle(trainImage, trainLabel, random_state=0)
 
     # choose the KNN Classifier with K = 3
-    classifier = KNeighborsClassifier(n_neighbors=7)
+    classifier = KNeighborsClassifier(n_neighbors=3)
 
     # train it
     start = time.time()
     classifier = classifier.fit(trainImage, trainLabel)
     end = time.time()
-    print(end - start, "seconds") #0.004902362823486328 seconds (K =3) 0.005059480667114258 seconds (K = 7)
+    print(end - start, "seconds") #0.004902362823486328 seconds (K =3)
     print("Fitted")
 
     # get the score
+    start = time.time()
     y_pred = classifier.predict(testImage)
+    end = time.time()
+    print(end - start, "seconds") # 32.95009398460388 seconds
     print(accuracy_score(testLabel, y_pred))
     plot_confusion_matrix(classifier, testImage, testLabel)
     plt.title("Confusion matrix of KNN with K = 7")

@@ -36,7 +36,7 @@ sns.set(font_scale=1.4)
 ax = sns.heatmap(matrix, linewidths=1, annot=True, ax=ax, cmap='Blues', fmt='g')
 ax.set_xlabel('\nPredicted Values')
 ax.set_ylabel('Actual Values ');
-ax.set_title("Confusion Matrix of the KNN model (User Handwriting) with K = 5")
+ax.set_title("Confusion Matrix of the KNN model (User Handwriting) with K = 3")
 plt.show()
 print(classification_report(test_predict, lable))
 """
@@ -57,25 +57,5 @@ K = 3
     accuracy                           0.66       100
    macro avg       0.66      0.67      0.63       100
 weighted avg       0.77      0.66      0.69       100
-"""
-
-"""
-K = 7
-              precision    recall  f1-score   support
-
-           0       1.00      1.00      1.00        10
-           1       1.00      0.59      0.74        17
-           2       0.90      0.82      0.86        11
-           3       0.90      0.64      0.75        14
-           4       0.80      0.57      0.67        14
-           5       1.00      0.67      0.80        15
-           6       0.50      1.00      0.67         5
-           7       0.10      0.20      0.13         5
-           8       0.80      1.00      0.89         8
-           9       0.10      1.00      0.18         1
-
-    accuracy                           0.71       100
-   macro avg       0.71      0.75      0.67       100
-weighted avg       0.85      0.71      0.75       100
 """
 

@@ -30,9 +30,12 @@ def svm_model():  # 97.92%
     start = time.time()
     classifier = classifier.fit(trainImage, trainLabel)
     end = time.time()
-    print(end - start, "seconds") # 228.13333225250244 seconds
+    print(end - start, "seconds") # 223.38203978538513 seconds
     print("Fitted")
+    start = time.time()
     y_pred = classifier.predict(testImage)
+    end = time.time()
+    print(end - start, "seconds") #115.29601621627808 seconds
     print(accuracy_score(testLabel, y_pred))
     plot_confusion_matrix(classifier, testImage, testLabel)
     plt.title("Confusion Matrix of the Non-linear SVM model")
