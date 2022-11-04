@@ -45,7 +45,7 @@ olefile @ file:///home/conda/feedstock_root/build_artifacts/olefile_160286652116
 opt-einsum @ file:///home/conda/feedstock_root/build_artifacts/opt_einsum_1617859230218/work
 packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1637239678211/work
 Pillow @ file:///Users/runner/miniforge3/conda-bld/pillow_1636559202918/work
-protobuf==3.19.1
+protobuf==3.19.5
 pyasn1==0.4.8
 pyasn1-modules==0.2.7
 pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
