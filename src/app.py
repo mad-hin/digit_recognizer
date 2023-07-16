@@ -1,9 +1,9 @@
 from tkinter import *
 
 try:
-    from PIL import ImageGrab
+    import pyscreenshot as ImageGrab
 except:
-    from pyscreenshot import ImageGrab
+    from PIL import ImageGrab
 
 from image_process.img_process import img_preprocess, predict_digit
 
@@ -47,8 +47,8 @@ class App(Tk):
         :param event:
         """
         # get x1, y1, x2, y2 co-ordinates
-        x1, y1 = (event.x - 10), (event.y - 10)
-        x2, y2 = (event.x + 10), (event.y + 10)
+        x1, y1 = (event.x - 5), (event.y - 5)
+        x2, y2 = (event.x + 5), (event.y + 5)
         color = "black"
         # display the mouse movement inside Canvas
         self.cv.create_oval(x1, y1, x2, y2, fill=color, outline=color)

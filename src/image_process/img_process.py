@@ -1,11 +1,10 @@
 import gzip
 import math
 import pickle
-import cv2
 
-from numpy import argmax, pad
+import cv2
 from keras.models import load_model
-from PIL import ImageGrab, Image
+from numpy import argmax, pad
 
 
 def predict_digit(img, modelName):
